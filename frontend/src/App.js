@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
+import ThemeToggle from "./components/ThemeToggle"; // Import the ThemeToggle component
 
 function App() {
   const [file, setFile] = useState(null);
@@ -68,6 +69,7 @@ function App() {
       <header className="App-header">
         <h1>Black Pepper Leaf Disease Detector</h1>
         <p>Upload a photo of a black pepper leaf to detect disease and get treatment suggestions</p>
+        <ThemeToggle /> {/* Add the ThemeToggle component */}
       </header>
       
       <main style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
