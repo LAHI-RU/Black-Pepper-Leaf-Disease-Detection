@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
-import ThemeToggle from "./components/ThemeToggle"; // Import the ThemeToggle component
+import ThemeToggle from "./components/ThemeToggle";
 
 function App() {
   const [file, setFile] = useState(null);
@@ -67,51 +67,33 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Black Pepper Leaf Disease Detector</h1>
-        <p>Upload a photo of a black pepper leaf to detect disease and get treatment suggestions</p>
-        <ThemeToggle /> {/* Add the ThemeToggle component */}
+        <h1 className="app-title">Black Pepper Leaf Disease Detector</h1>
+        <p className="app-subtitle">Upload a photo of a black pepper leaf to detect disease and get treatment suggestions</p>
+        <ThemeToggle />
       </header>
       
-      <main style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
-        <div style={{ 
-          border: "2px dashed #ccc", 
-          padding: "20px", 
-          borderRadius: "8px",
-          marginBottom: "20px"
-        }}>
+      <main className="main-container">
+        <div className="upload-container">
           <input 
             type="file" 
             accept="image/*"
             id="leaf-image" 
             onChange={handleFileChange}
-            style={{ display: "none" }}
+            className="file-input"
           />
           <label 
             htmlFor="leaf-image"
-            style={{
-              padding: "10px 15px",
-              backgroundColor: "#4CAF50",
-              color: "white",
-              borderRadius: "4px",
-              cursor: "pointer",
-              display: "inline-block",
-              marginBottom: "10px"
-            }}
+            className="file-label"
           >
             Select Image
           </label>
           
           {preview && (
-            <div style={{ marginTop: "15px" }}>
+            <div className="preview-container">
               <img 
                 src={preview} 
                 alt="Leaf preview" 
-                style={{ 
-                  maxWidth: "100%", 
-                  maxHeight: "300px",
-                  border: "1px solid #ddd",
-                  borderRadius: "4px"
-                }} 
+                className="preview-image"
               />
             </div>
           )}
@@ -119,65 +101,36 @@ function App() {
           <button 
             onClick={handleSubmit}
             disabled={!file || loading}
-            style={{
-              padding: "10px 15px",
-              backgroundColor: "#2196F3",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              cursor: file && !loading ? "pointer" : "not-allowed",
-              marginTop: "15px",
-              opacity: file && !loading ? 1 : 0.7
-            }}
+            className={`analyze-button ${(!file || loading) ? 'disabled' : ''}`}
           >
             {loading ? "Processing..." : "Analyze Leaf"}
           </button>
           
           {error && (
-            <div style={{ 
-              color: "red", 
-              margin: "15px 0", 
-              padding: "10px", 
-              backgroundColor: "#ffebee",
-              borderRadius: "4px" 
-            }}>
+            <div className="error-container">
               {error}
             </div>
           )}
         </div>
         
         {result && (
-          <div style={{ 
-            border: "1px solid #ddd", 
-            borderRadius: "8px", 
-            padding: "20px",
-            backgroundColor: result.prediction === "Healthy" ? "#e8f5e9" : "#fff3e0"
-          }}>
-            <h2 style={{ marginTop: 0 }}>Analysis Results</h2>
-            <div style={{ marginBottom: "15px" }}>
+          <div className={`result-container ${result.prediction === "Healthy" ? "healthy" : "disease"}`}>
+            <h2 className="result-heading">Analysis Results</h2>
+            <div className="diagnosis-container">
               <strong>Diagnosis:</strong> 
-              <span style={{ 
-                fontWeight: "bold", 
-                color: result.prediction === "Healthy" ? "green" : "#f57c00"
-              }}>
+              <span className={`diagnosis-text ${result.prediction === "Healthy" ? "healthy-text" : "disease-text"}`}>
                 {result.prediction}
               </span>
             </div>
-            <div>
+            <div className="treatment-container">
               <strong>Recommended Treatment:</strong>
-              <p>{result.treatment}</p>
+              <p className="treatment-text">{result.treatment}</p>
             </div>
           </div>
         )}
       </main>
       
-      <footer style={{ 
-        marginTop: "40px", 
-        padding: "20px", 
-        backgroundColor: "#f5f5f5",
-        borderTop: "1px solid #ddd",
-        textAlign: "center"
-      }}>
+      <footer className="app-footer">
         <p>Black Pepper Leaf Disease Detection Project</p>
       </footer>
     </div>

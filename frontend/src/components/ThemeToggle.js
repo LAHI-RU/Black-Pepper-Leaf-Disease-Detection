@@ -7,14 +7,15 @@ const ThemeToggle = () => {
   
   return (
     <div className="theme-toggle-container">
-      <label className="switch">
+      <label className="switch" aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}>
         <input 
           type="checkbox" 
           checked={darkMode}
           onChange={toggleTheme}
-          aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
         />
-        <span className="slider"></span>
+        <span className="slider">
+          <span className="sr-only">{darkMode ? "Dark mode enabled" : "Light mode enabled"}</span>
+        </span>
       </label>
     </div>
   );
