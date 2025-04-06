@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { ThemeContext } from "../contexts/ThemeContext";
 import ThemeToggle from "./ThemeToggle";
 import "../styles/Navbar.css";
+import logo from "./images/logo.png";
 
 const Navbar = () => {
   const { darkMode } = useContext(ThemeContext);
@@ -23,11 +24,11 @@ const Navbar = () => {
       <div className="navbar-container">
         <Link to="/" className="navbar-logo" onClick={closeMenu}>
           <img 
-            src="/images/logo.png" 
+            src={logo} 
             alt="Black Pepper Leaf" 
             className="logo-image"
           />
-          <span className="logo-text">PepperHealth</span>
+          <span className="logo-text">Black Pepper Leaf Disease Detection</span>
         </Link>
 
         <div className="menu-icon" onClick={toggleMenu}>
