@@ -3,9 +3,35 @@ import React, { useState } from "react";
 import "../styles/DiseaseInfo.css";
 
 const DiseaseInfo = () => {
-  const [activeTab, setActiveTab] = useState("blight");
+  const [activeTab, setActiveTab] = useState("healthy");
 
   const diseases = {
+    healthy: {
+      name: "Healthy Leaf Characteristics",
+      scientificName: "Piper nigrum (Black Pepper)",
+      symptoms: [
+        "Deep green coloration throughout the leaf",
+        "Smooth, glossy leaf surface",
+        "No spots, lesions or discoloration",
+        "Natural leaf shape without deformities",
+        "Consistent color from leaf base to tip"
+      ],
+      maintenance: [
+        "Regular but moderate watering",
+        "Balanced NPK fertilization",
+        "Adequate spacing for air circulation",
+        "Partial shade in very hot climates",
+        "Regular pruning to maintain plant structure"
+      ],
+      optimalConditions: [
+        "Temperature: 23-32°C (73-90°F)",
+        "Humidity: 60-95%",
+        "Rainfall: 1500-3000mm annually",
+        "Soil pH: 5.5-6.5 (slightly acidic)",
+        "Well-draining organic-rich soil"
+      ],
+      image: "/images/diseases/healthy-leaf-detail.jpg"
+    },
     blight: {
       name: "Leaf Blight",
       scientificName: "Phytophthora capsici",
@@ -69,32 +95,7 @@ const DiseaseInfo = () => {
       ],
       image: "/images/diseases/yellow-mottle-detail.jpg"
     },
-    healthy: {
-      name: "Healthy Leaf Characteristics",
-      scientificName: "Piper nigrum (Black Pepper)",
-      symptoms: [
-        "Deep green coloration throughout the leaf",
-        "Smooth, glossy leaf surface",
-        "No spots, lesions or discoloration",
-        "Natural leaf shape without deformities",
-        "Consistent color from leaf base to tip"
-      ],
-      maintenance: [
-        "Regular but moderate watering",
-        "Balanced NPK fertilization",
-        "Adequate spacing for air circulation",
-        "Partial shade in very hot climates",
-        "Regular pruning to maintain plant structure"
-      ],
-      optimalConditions: [
-        "Temperature: 23-32°C (73-90°F)",
-        "Humidity: 60-95%",
-        "Rainfall: 1500-3000mm annually",
-        "Soil pH: 5.5-6.5 (slightly acidic)",
-        "Well-draining organic-rich soil"
-      ],
-      image: "/images/diseases/healthy-leaf-detail.jpg"
-    }
+    
   };
 
   const handleTabChange = (tab) => {
@@ -111,6 +112,12 @@ const DiseaseInfo = () => {
       </div>
 
       <div className="disease-tabs">
+      <button 
+          className={`tab-button ${activeTab === "healthy" ? "active" : ""}`}
+          onClick={() => handleTabChange("healthy")}
+        >
+          Healthy Leaf
+        </button>
         <button 
           className={`tab-button ${activeTab === "blight" ? "active" : ""}`}
           onClick={() => handleTabChange("blight")}
@@ -123,12 +130,7 @@ const DiseaseInfo = () => {
         >
           Yellow Mottle Virus
         </button>
-        <button 
-          className={`tab-button ${activeTab === "healthy" ? "active" : ""}`}
-          onClick={() => handleTabChange("healthy")}
-        >
-          Healthy Leaf
-        </button>
+        
       </div>
 
       <div className="disease-content">
