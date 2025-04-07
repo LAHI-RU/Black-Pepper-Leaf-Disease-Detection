@@ -3,6 +3,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/Home.css";
 import Healthy_black_pepper_plant from "../components/images/Healthy_black_pepper_plant.png"
+import healthy_leaf from "../components/images/healthy_leaf.png"
+import leaf_blight from "../components/images/leaf_blight.jpg"  
+import yellow_mottle from "../components/images/yellow_mottle.jpg"
 
 const Home = () => {
   return (
@@ -56,19 +59,19 @@ const Home = () => {
         <h2>Common Black Pepper Leaf Diseases</h2>
         <div className="disease-cards">
         <div className="disease-card">
-            <img src="/images/healthy-leaf.jpg" alt="Healthy Leaf" />
+            <img src={healthy_leaf} alt="Healthy Leaf" />
             <h3>Healthy Leaf</h3>
             <p>Deep green color with no signs of discoloration, spots, or deformities.</p>
             <Link to="/disease-info" className="learn-more-link">Learn More</Link>
           </div>
           <div className="disease-card">
-            <img src="/images/leaf-blight.jpg" alt="Leaf Blight" />
+            <img src={leaf_blight} alt="Leaf Blight" />
             <h3>Leaf Blight</h3>
             <p>Characterized by dark lesions with yellow margins that can lead to leaf drop.</p>
             <Link to="/disease-info" className="learn-more-link">Learn More</Link>
           </div>
           <div className="disease-card">
-            <img src="/images/yellow-mottle.jpg" alt="Yellow Mottle Virus" />
+            <img src={yellow_mottle} alt="Yellow Mottle Virus" />
             <h3>Yellow Mottle Virus</h3>
             <p>Causes yellowing and mottling patterns on leaves, stunting plant growth.</p>
             <Link to="/disease-info" className="learn-more-link">Learn More</Link>
