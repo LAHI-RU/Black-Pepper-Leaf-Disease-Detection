@@ -1,13 +1,13 @@
 .theme-toggle-container {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 10px;
+  right: 10px;
   z-index: 10;
 }
 
 /* The switch - the box around the slider */
 .switch {
-  font-size: 17px;
+  font-size: 15px;
   position: relative;
   display: inline-block;
   width: 3.5em;

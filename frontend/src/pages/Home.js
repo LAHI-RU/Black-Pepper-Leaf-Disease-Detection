@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/Home.css";
+import Healthy_black_pepper_plant from "../components/images/Healthy_black_pepper_plant.png"
 
 const Home = () => {
   return (
@@ -24,7 +25,7 @@ const Home = () => {
           </div>
         </div>
         <div className="hero-image">
-          <img src="/images/hero-image.jpg" alt="Healthy black pepper plant" />
+          <img src={Healthy_black_pepper_plant} alt="Healthy black pepper plant" />
         </div>
       </section>
 
