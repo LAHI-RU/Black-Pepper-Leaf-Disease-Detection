@@ -55,6 +55,12 @@ const Home = () => {
       <section className="disease-preview-section">
         <h2>Common Black Pepper Leaf Diseases</h2>
         <div className="disease-cards">
+        <div className="disease-card">
+            <img src="/images/healthy-leaf.jpg" alt="Healthy Leaf" />
+            <h3>Healthy Leaf</h3>
+            <p>Deep green color with no signs of discoloration, spots, or deformities.</p>
+            <Link to="/disease-info" className="learn-more-link">Learn More</Link>
+          </div>
           <div className="disease-card">
             <img src="/images/leaf-blight.jpg" alt="Leaf Blight" />
             <h3>Leaf Blight</h3>
@@ -67,12 +73,7 @@ const Home = () => {
             <p>Causes yellowing and mottling patterns on leaves, stunting plant growth.</p>
             <Link to="/disease-info" className="learn-more-link">Learn More</Link>
           </div>
-          <div className="disease-card">
-            <img src="/images/healthy-leaf.jpg" alt="Healthy Leaf" />
-            <h3>Healthy Leaf</h3>
-            <p>Deep green color with no signs of discoloration, spots, or deformities.</p>
-            <Link to="/disease-info" className="learn-more-link">Learn More</Link>
-          </div>
+          
         </div>
       </section>
 
