@@ -1,12 +1,13 @@
 // frontend/src/pages/About.js
 import React from "react";
 import "../styles/About.css";
+import sustainable_farming from "../components/images/sustainable_farming.png";
 
 const About = () => {
   return (
     <div className="about-page">
       <div className="about-header">
-        <h1>About PepperHealth</h1>
+        <h1>About Black Pepper Health</h1>
         <p>Using technology to support sustainable black pepper farming</p>
       </div>
 
@@ -21,7 +22,7 @@ const About = () => {
           </p>
         </div>
         <div className="about-image">
-          <img src="/images/farming.jpg" alt="Sustainable farming" />
+          <img src={sustainable_farming} alt="Sustainable farming" />
         </div>
       </section>
 

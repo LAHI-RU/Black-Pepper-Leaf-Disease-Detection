@@ -10,7 +10,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-section">
-          <h3>PepperHealth</h3>
+          <h3>Black Pepper Health</h3>
           <p>Helping farmers identify and treat black pepper leaf diseases using AI technology.</p>
         </div>
         
@@ -26,7 +26,7 @@ const Footer = () => {
         
         <div className="footer-section">
           <h3>Contact</h3>
-          <p>Email: info@pepperhealth.org</p>
+          <p>Email: info@blackpepperhealth.org</p>
           <p>Phone: +1 (555) 123-4567</p>
         </div>
       </div>

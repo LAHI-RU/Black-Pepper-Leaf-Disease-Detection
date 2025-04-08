@@ -84,7 +84,7 @@ function DetectionTool() {
           
           {showHowTo && (
             <div className="how-to-content">
-              <h3>How to Take the Best Photo:</h3>
+              <h3>How to Take the Best Photo</h3>
               <ol>
                 <li>Choose a well-lit area, preferably natural daylight</li>
                 <li>Place the leaf against a plain background</li>

@@ -1,6 +1,9 @@
 // frontend/src/pages/DiseaseInfo.js
 import React, { useState } from "react";
 import "../styles/DiseaseInfo.css";
+import healthy_leaf from "../components/images/healthy_leaf.png"
+import leaf_blight from "../components/images/leaf_blight.jpg"  
+import yellow_mottle from "../components/images/yellow_mottle.jpg"
 
 const DiseaseInfo = () => {
   const [activeTab, setActiveTab] = useState("healthy");
@@ -30,7 +33,7 @@ const DiseaseInfo = () => {
         "Soil pH: 5.5-6.5 (slightly acidic)",
         "Well-draining organic-rich soil"
       ],
-      image: "/images/diseases/healthy-leaf-detail.jpg"
+      image: healthy_leaf
     },
     blight: {
       name: "Leaf Blight",
@@ -61,7 +64,7 @@ const DiseaseInfo = () => {
         "Use raised beds in areas with heavy rainfall",
         "Implement crop rotation practices"
       ],
-      image: "/images/diseases/leaf-blight-detail.jpg"
+      image: leaf_blight
     },
     yellowMottle: {
       name: "Yellow Mottle Virus",
@@ -93,7 +96,7 @@ const DiseaseInfo = () => {
         "Disinfect tools between plants",
         "Create physical barriers like reflective mulches to deter aphids"
       ],
-      image: "/images/diseases/yellow-mottle-detail.jpg"
+      image: yellow_mottle
     },
     
   };

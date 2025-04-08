@@ -70,12 +70,14 @@
   .how-to-content ol {
     padding-left: 20px;
     line-height: 1.6;
-    list-style-position: inside;
+    list-style-position: outside;
+    font-size:1.1rem;
   }
   
   .how-to-content li {
     margin-bottom: 10px;
     padding-left: 0px;
+    text-align: left; 
   }
   
   .upload-container {
