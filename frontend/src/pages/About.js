@@ -2,6 +2,7 @@
 import React from "react";
 import "../styles/About.css";
 import sustainable_farming from "../components/images/sustainable_farming.png";
+import ai_tech from "../components/images/ai_tech.png";
 
 const About = () => {
   return (
@@ -28,7 +29,7 @@ const About = () => {
 
       <section className="about-section reverse">
         <div className="about-image">
-          <img src="/images/ai-tech.jpg" alt="AI technology" />
+          <img src={ai_tech} alt="AI technology" />
         </div>
         <div className="about-content">
           <h2>Our Technology</h2>
@@ -41,31 +42,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="team-section">
-        <h2>Our Team</h2>
-        <div className="team-grid">
-          <div className="team-member">
-            <img src="/images/team/member1.jpg" alt="Team member" />
-            <h3>Dr. Maya Patel</h3>
-            <p>Agricultural Scientist</p>
-          </div>
-          <div className="team-member">
-            <img src="/images/team/member2.jpg" alt="Team member" />
-            <h3>Alex Chen</h3>
-            <p>Machine Learning Engineer</p>
-          </div>
-          <div className="team-member">
-            <img src="/images/team/member3.jpg" alt="Team member" />
-            <h3>Sara Nguyen</h3>
-            <p>Web Developer</p>
-          </div>
-          <div className="team-member">
-            <img src="/images/team/member4.jpg" alt="Team member" />
-            <h3>Michael Okonjo</h3>
-            <p>Agronomist</p>
-          </div>
-        </div>
-      </section>
+      
 
       <section className="vision-section">
         <div className="vision-content">
