@@ -1,322 +1,443 @@
 /* frontend/src/styles/DetectionTool.css */
 .detection-tool-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .detection-header {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.detection-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.detection-header h1 {
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.detection-header p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.detector-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--card-background);
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.how-to-section {
+  margin-bottom: 20px;
+}
+
+.how-to-button {
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.how-to-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.how-to-content {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-color);
+}
+
+.how-to-content h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+}
+
+.how-to-content ol {
+  padding-left: 20px;
+  line-height: 1.6;
+  list-style-position: outside;
+  font-size:1.1rem;
+}
+
+.how-to-content li {
+  margin-bottom: 10px;
+  padding-left: 0px;
+  text-align: left; 
+}
+
+.upload-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-area {
+  border: 2px dashed var(--border-color);
+  padding: 30px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-label {
+  background-color: var(--button-primary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 20px;
+  transition: all 0.2s ease;
+}
+
+.file-label:hover {
+  background-color: #43a047;
+  transform: translateY(-2px);
+}
+
+.preview-container {
+  width: 100%;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.placeholder-container {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.upload-placeholder {
+  text-align: center;
+}
+
+.upload-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: var(--border-color);
+}
+
+.analyze-button {
+  background-color: var(--button-secondary);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 20px;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.analyze-button:hover:not(.disabled) {
+  background-color: #1e88e5;
+  transform: translateY(-2px);
+}
+
+.analyze-button.disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.error-container {
+  margin-top: 20px;
+  padding: 15px;
+  color: var(--error-text);
+  background-color: var(--error-background);
+  border-radius: 4px;
+  text-align: left;
+}
+
+.result-container {
+  margin-top: 30px;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.result-container.healthy {
+  background-color: var(--healthy-background);
+  border-left: 5px solid var(--healthy-text);
+}
+
+.result-container.disease {
+  background-color: var(--disease-background);
+  border-left: 5px solid var(--disease-text);
+}
+
+/* Result container styles for "Other Disease" */
+.result-container.other {
+  border-left: 5px solid #ff9500;
+  background-color: rgba(255, 149, 0, 0.1);
+}
+
+.result-heading {
+  color: var(--text-color);
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.diagnosis-container {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.diagnosis-text {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.healthy-text {
+  color: var(--healthy-text);
+}
+
+.disease-text {
+  color: var(--disease-text);
+}
+
+/* Diagnosis text for "Other Disease" */
+.diagnosis-text.other-text {
+  color: #c44900;
+}
+
+/* Confidence indicator styles */
+.confidence-indicator {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.high-confidence {
+  background-color: rgba(52, 199, 89, 0.2);
+  color: #2a7d4c;
+}
+
+.medium-confidence {
+  background-color: rgba(255, 204, 0, 0.2);
+  color: #b06900;
+}
+
+.low-confidence {
+  background-color: rgba(255, 149, 0, 0.2);
+  color: #c44900;
+}
+
+/* Details toggle button */
+.details-toggle {
+  margin-left: 10px;
+  padding: 3px 8px;
+  background-color: #f2f2f7;
+  border: 1px solid #d1d1d6;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.details-toggle:hover {
+  background-color: #e5e5ea;
+}
+
+/* Probability details section */
+.probability-details {
+  margin: 15px 0;
+  padding: 15px;
+  background-color: #f2f2f7;
+  border-radius: 8px;
+}
+
+.probability-details h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.probability-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.probability-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.probability-label {
+  min-width: 140px;
+  font-size: 0.9rem;
+}
+
+.probability-bar-wrapper {
+  flex-grow: 1;
+  position: relative;
+  height: 18px;
+  background-color: #e5e5ea;
+  border-radius: 9px;
+  overflow: hidden;
+}
+
+.probability-bar {
+  height: 100%;
+  background-color: #3478f6;
+  border-radius: 9px;
+  transition: width 0.3s ease;
+}
+
+.probability-bar.selected {
+  background-color: #30d158;
+}
+
+.probability-value {
+  position: absolute;
+  right: 8px;
+  top: 0;
+  line-height: 18px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.threshold-info {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.treatment-container {
+  background-color: var(--background-color);
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.treatment-container strong {
+  font-size: 1.05rem;
+}
+
+.treatment-text {
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+.detection-tips {
+  margin-top: 60px;
+}
+
+.detection-tips h3 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 30px;
+  font-size: 1.5rem;
+}
+
+/* Updated tips grid to use CSS Grid */
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.tip-card {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  flex: 1;
+  min-width: 250px;
+  max-width: 350px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.tip-card:hover {
+  transform: translateY(-5px);
+}
+
+.tip-icon {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.tip-card h4 {
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.tip-card p {
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
   .detection-header h1 {
-    font-size: 2.2rem;
-    color: var(--primary-color);
-    margin-bottom: 15px;
+    font-size: 1.8rem;
   }
   
   .detection-header p {
-    font-size: 1.1rem;
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
-  
-  .detector-container {
-    display: flex;
-    flex-direction: column;
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: var(--card-background);
-    border-radius: 8px;
-    padding: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  }
-  
-  .how-to-section {
-    margin-bottom: 20px;
-  }
-  
-  .how-to-button {
-    background-color: transparent;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s ease;
-  }
-  
-  .how-to-button:hover {
-    background-color: var(--primary-color);
-    color: white;
-  }
-  
-  .how-to-content {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: var(--background-color);
-    border-radius: 8px;
-    border-left: 4px solid var(--primary-color);
-  }
-  
-  .how-to-content h3 {
-    margin-top: 0;
-    color: var(--primary-color);
-  }
-  
-  .how-to-content ol {
-    padding-left: 20px;
-    line-height: 1.6;
-    list-style-position: outside;
-    font-size:1.1rem;
-  }
-  
-  .how-to-content li {
-    margin-bottom: 10px;
-    padding-left: 0px;
-    text-align: left; 
-  }
-  
-  .upload-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .upload-area {
-    border: 2px dashed var(--border-color);
-    padding: 30px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .file-input {
-    display: none;
-  }
-  
-  .file-label {
-    background-color: var(--button-primary);
-    color: white;
-    padding: 12px 24px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
-    margin-bottom: 20px;
-    transition: all 0.2s ease;
-  }
-  
-  .file-label:hover {
-    background-color: #43a047;
-    transform: translateY(-2px);
-  }
-  
-  .preview-container {
-    width: 100%;
-    margin: 20px 0;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .preview-image {
-    max-width: 100%;
-    max-height: 300px;
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .placeholder-container {
-    width: 100%;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--background-color);
-    border-radius: 8px;
-    margin: 20px 0;
-  }
-  
-  .upload-placeholder {
-    text-align: center;
-  }
-  
-  .upload-icon {
-    font-size: 3rem;
-    margin-bottom: 15px;
-    color: var(--border-color);
-  }
-  
-  .analyze-button {
-    background-color: var(--button-secondary);
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
-    margin-top: 20px;
-    transition: all 0.2s ease;
     font-size: 1rem;
   }
   
-  .analyze-button:hover:not(.disabled) {
-    background-color: #1e88e5;
-    transform: translateY(-2px);
+  .detector-container {
+    padding: 20px;
   }
   
-  .analyze-button.disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
+  .upload-area {
+    padding: 20px;
   }
   
-  .error-container {
-    margin-top: 20px;
-    padding: 15px;
-    color: var(--error-text);
-    background-color: var(--error-background);
-    border-radius: 4px;
-    text-align: left;
-  }
-  
-  .result-container {
-    margin-top: 30px;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-  
-  .result-container.healthy {
-    background-color: var(--healthy-background);
-    border-left: 5px solid var(--healthy-text);
-  }
-  
-  .result-container.disease {
-    background-color: var(--disease-background);
-    border-left: 5px solid var(--disease-text);
-  }
-  
-  .result-heading {
-    color: var(--text-color);
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-  }
-  
-  .diagnosis-container {
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-  }
-  
-  .diagnosis-text {
-    font-weight: bold;
-    margin-left: 10px;
-  }
-  
-  .healthy-text {
-    color: var(--healthy-text);
-  }
-  
-  .disease-text {
-    color: var(--disease-text);
-  }
-  
-  .treatment-container {
-    background-color: var(--background-color);
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 15px;
-  }
-  
-  .treatment-container strong {
-    font-size: 1.05rem;
-  }
-  
-  .treatment-text {
-    margin-top: 10px;
-    line-height: 1.6;
-  }
-  
-  .detection-tips {
-    margin-top: 60px;
-  }
-  
-  .detection-tips h3 {
-    text-align: center;
-    color: var(--primary-color);
-    margin-bottom: 30px;
-    font-size: 1.5rem;
+  .analyze-button, .file-label {
+    width: 100%;
   }
   
   .tips-grid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: column;
+    align-items: center;
   }
   
   .tip-card {
-    background-color: var(--card-background);
-    border-radius: 8px;
-    padding: 25px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-    flex: 1;
-    min-width: 250px;
-    max-width: 350px;
-    text-align: center;
-    transition: transform 0.3s ease;
+    max-width: 100%;
   }
-  
-  .tip-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .tip-icon {
-    font-size: 2rem;
-    margin-bottom: 15px;
-    color: var(--primary-color);
-  }
-  
-  .tip-card h4 {
-    margin-bottom: 10px;
-    color: var(--text-color);
-  }
-  
-  .tip-card p {
-    line-height: 1.6;
-  }
-  
-  @media (max-width: 768px) {
-    .detection-header h1 {
-      font-size: 1.8rem;
-    }
-    
-    .detection-header p {
-      font-size: 1rem;
-    }
-    
-    .detector-container {
-      padding: 20px;
-    }
-    
-    .upload-area {
-      padding: 20px;
-    }
-    
-    .analyze-button, .file-label {
-      width: 100%;
-    }
-    
-    .tips-grid {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .tip-card {
-      max-width: 100%;
-    }
-  }
+}

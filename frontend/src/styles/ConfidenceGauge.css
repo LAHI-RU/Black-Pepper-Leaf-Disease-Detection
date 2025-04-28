@@ -1,0 +1,139 @@
+/* frontend/src/styles/ConfidenceGauge.css */
+.confidence-gauge-container {
+    margin: 15px 0;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .confidence-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  
+  .confidence-percentage {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .gauge {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    margin: 10px 0 15px;
+  }
+  
+  .gauge-body {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 50px 50px 0 0;
+    background-color: #e5e5ea;
+  }
+  
+  .gauge-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(to right, #ff4d4d, #ffd24d, #4dff88);
+    border-radius: 50%;
+    transform-origin: center bottom;
+    transform: rotate(0deg);
+    transition: transform 0.8s ease-out;
+  }
+  
+  .gauge-cover {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    right: 10%;
+    bottom: 0;
+    background-color: #fff;
+    border-radius: 50px 50px 0 0;
+  }
+  
+  .gauge-segments {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    height: 5px;
+  }
+  
+  .segment {
+    flex: 1;
+    height: 100%;
+  }
+  
+  .segment.low {
+    background-color: #ff4d4d;
+    border-radius: 5px 0 0 5px;
+  }
+  
+  .segment.medium {
+    background-color: #ffd24d;
+  }
+  
+  .segment.high {
+    background-color: #4dff88;
+    border-radius: 0 5px 5px 0;
+  }
+  
+  .threshold-marker {
+    position: absolute;
+    bottom: -7px;
+    width: 3px;
+    height: 15px;
+    background-color: #333;
+    transform: translateX(-50%);
+  }
+  
+  .threshold-marker:after {
+    content: "threshold";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    white-space: nowrap;
+    color: #666;
+  }
+  
+  .confidence-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .confidence-level {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .confidence-level.low {
+    color: #d32f2f;
+  }
+  
+  .confidence-level.medium {
+    color: #ff9800;
+  }
+  
+  .confidence-level.high {
+    color: #388e3c;
+  }
+  
+  .confidence-note {
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+  }

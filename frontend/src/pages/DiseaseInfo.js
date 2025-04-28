@@ -4,6 +4,7 @@ import "../styles/DiseaseInfo.css";
 import healthy_leaf from "../components/images/healthy_leaf.png"
 import leaf_blight from "../components/images/leaf_blight.jpg"  
 import yellow_mottle from "../components/images/yellow_mottle.jpg"
+import other_disease from "../components/images/other_disease.png"
 
 const DiseaseInfo = () => {
   const [activeTab, setActiveTab] = useState("healthy");
@@ -98,7 +99,39 @@ const DiseaseInfo = () => {
       ],
       image: yellow_mottle
     },
-    
+    otherDisease: {
+      name: "Other Potential Diseases",
+      scientificName: "Various pathogens",
+      symptoms: [
+        "Symptoms not clearly matching known disease patterns",
+        "Mixed or atypical symptoms",
+        "Early stage infections that haven't fully manifested",
+        "Nutritional deficiencies that resemble disease",
+        "Environmental stress symptoms"
+      ],
+      causes: [
+        "Early stage infections",
+        "Multiple concurrent pathogens",
+        "Uncommon or emerging diseases",
+        "Environmental stressors (drought, heat, cold)",
+        "Nutrient deficiencies or toxicities"
+      ],
+      treatments: [
+        "Isolate affected plants to prevent potential spread",
+        "Apply broad-spectrum organic treatments like neem oil",
+        "Improve overall plant health through balanced nutrition",
+        "Ensure optimal growing conditions",
+        "Monitor plants closely for developing symptoms"
+      ],
+      prevention: [
+        "Maintain plant diversity to reduce disease spread",
+        "Implement regular crop rotation",
+        "Practice excellent garden sanitation",
+        "Use resistant varieties when available",
+        "Conduct soil tests to identify and correct deficiencies"
+      ],
+      image: other_disease  // You'll need to add this image file
+    },
   };
 
   const handleTabChange = (tab) => {
@@ -133,7 +166,12 @@ const DiseaseInfo = () => {
         >
           Yellow Mottle Virus
         </button>
-        
+        <button 
+          className={`tab-button ${activeTab === "otherDisease" ? "active" : ""}`}
+          onClick={() => handleTabChange("otherDisease")}
+        >
+          Other Diseases
+        </button>
       </div>
 
       <div className="disease-content">
@@ -220,6 +258,16 @@ const DiseaseInfo = () => {
             )}
           </div>
         </div>
+        
+        {activeTab === "otherDisease" && (
+          <div className="other-disease-note">
+            <h3>When to seek expert advice:</h3>
+            <p>If your plant shows symptoms that don't clearly match known diseases or if our system couldn't 
+            confidently identify the disease, it's recommended to consult with a local agricultural extension 
+            office or plant pathologist. For immediate action, follow the general treatments listed above 
+            while waiting for expert diagnosis.</p>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../styles/DetectionTool.css";
+import ConfidenceGauge from "../components/ConfidenceGauge";
 
 function DetectionTool() {
   const [file, setFile] = useState(null);
@@ -10,12 +11,14 @@ function DetectionTool() {
   const [error, setError] = useState("");
   const [result, setResult] = useState(null);
   const [showHowTo, setShowHowTo] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     setFile(selectedFile);
     setError("");
     setResult(null);
+    setShowDetails(false);
 
     // Create preview
     if (selectedFile) {
@@ -40,6 +43,7 @@ function DetectionTool() {
     formData.append("file", file);
     setLoading(true);
     setError("");
+    setShowDetails(false);
 
     try {
       const response = await axios.post("http://127.0.0.1:8000/predict/", formData, {
@@ -51,7 +55,11 @@ function DetectionTool() {
       } else {
         setResult({
           prediction: response.data.prediction,
-          treatment: response.data.treatment
+          treatment: response.data.treatment,
+          confidence: response.data.confidence,
+          confidence_info: response.data.confidence_info,
+          all_probabilities: response.data.all_probabilities,
+          threshold: response.data.threshold
         });
       }
     } catch (error) {
@@ -67,6 +75,17 @@ function DetectionTool() {
 
   const toggleHowTo = () => {
     setShowHowTo(!showHowTo);
+  };
+
+  const toggleDetails = () => {
+    setShowDetails(!showDetails);
+  };
+
+  // Function to determine the color class based on confidence
+  const getConfidenceClass = (confidence) => {
+    if (confidence >= 0.85) return "high-confidence";
+    if (confidence >= 0.65) return "medium-confidence";
+    return "low-confidence";
   };
 
   return (
@@ -145,14 +164,48 @@ function DetectionTool() {
           </div>
           
           {result && (
-            <div className={`result-container ${result.prediction === "Healthy" ? "healthy" : "disease"}`}>
+            <div className={`result-container ${result.prediction === "Healthy" ? "healthy" : 
+                            result.prediction === "Other Disease" ? "other" : "disease"}`}>
               <h2 className="result-heading">Analysis Results</h2>
               <div className="diagnosis-container">
                 <strong>Diagnosis:</strong> 
-                <span className={`diagnosis-text ${result.prediction === "Healthy" ? "healthy-text" : "disease-text"}`}>
+                <span className={`diagnosis-text ${result.prediction === "Healthy" ? "healthy-text" : 
+                                result.prediction === "Other Disease" ? "other-text" : "disease-text"}`}>
                   {result.prediction}
                 </span>
               </div>
+              
+              {/* Add confidence gauge component */}
+              <ConfidenceGauge confidence={result.confidence} threshold={result.threshold} />
+              
+              <button onClick={toggleDetails} className="details-toggle">
+                {showDetails ? "Hide Detailed Analysis" : "Show Detailed Analysis"}
+              </button>
+              
+              {showDetails && (
+                <div className="probability-details">
+                  <h4>Detection Probabilities:</h4>
+                  <div className="probability-bars">
+                    {Object.entries(result.all_probabilities).map(([disease, probability]) => (
+                      <div key={disease} className="probability-bar-container">
+                        <div className="probability-label">{disease}:</div>
+                        <div className="probability-bar-wrapper">
+                          <div 
+                            className={`probability-bar ${disease === result.prediction ? "selected" : ""}`}
+                            style={{ width: `${probability * 100}%` }}
+                          ></div>
+                          <span className="probability-value">{(probability * 100).toFixed(1)}%</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="threshold-info">
+                    <small>Confidence threshold: {(result.threshold * 100).toFixed(0)}%. 
+                    Results below this threshold are classified as "Other Disease".</small>
+                  </div>
+                </div>
+              )}
+              
               <div className="treatment-container">
                 <strong>Recommended Treatment:</strong>
                 <p className="treatment-text">{result.treatment}</p>
@@ -179,6 +232,11 @@ function DetectionTool() {
             <div className="tip-icon">🌱</div>
             <h4>Fresh Samples</h4>
             <p>Use freshly picked leaves when possible for the best diagnosis.</p>
+          </div>
+          <div className="tip-card">
+            <div className="tip-icon">⚠️</div>
+            <h4>Uncertain Results</h4>
+            <p>If confidence is low, try taking another photo or consult with an expert.</p>
           </div>
         </div>
       </div>
