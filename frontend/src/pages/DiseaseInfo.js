@@ -4,7 +4,7 @@ import "../styles/DiseaseInfo.css";
 import healthy_leaf from "../components/images/healthy_leaf.png"
 import leaf_blight from "../components/images/leaf_blight.jpg"  
 import yellow_mottle from "../components/images/yellow_mottle.jpg"
-import other_disease from "../components/images/other_disease.png"
+import other_disease from "../components/images/other_disease.jpg"
 
 const DiseaseInfo = () => {
   const [activeTab, setActiveTab] = useState("healthy");
