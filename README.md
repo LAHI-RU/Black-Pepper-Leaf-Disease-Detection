@@ -151,11 +151,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - FastAPI for the efficient backend framework
 - React community for the frontend tools and libraries
 
-## 📞 Support
-
-For support, please open an issue in the GitHub repository or contact the maintainers directly.
-
 ---
+
 Last updated: 2025-05-04
 
 Made with ❤️ for sustainable agriculture
