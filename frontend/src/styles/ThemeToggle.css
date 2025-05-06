@@ -1,61 +1,42 @@
 .theme-toggle-container {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* The switch - the box around the slider */
-.switch {
-  font-size: 15px;
-  position: relative;
-  display: inline-block;
-  width: 3.5em;
-  height: 2em;
-}
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
-.slider {
-  --background: #28096b;
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--background);
-  transition: .5s;
-  border-radius: 30px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 1.4em;
-  width: 1.4em;
+.theme-toggle-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  left: 10%;
-  bottom: 15%;
-  box-shadow: inset 8px -4px 0px 0px #fff000;
-  background: var(--background);
-  transition: .5s;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  outline: none;
+  background-color: var(--card-background);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-input:checked + .slider {
-  background-color: #522ba7;
+.theme-toggle-button:hover {
+  transform: scale(1.1);
 }
 
-input:checked + .slider:before {
-  transform: translateX(100%);
-  box-shadow: inset 15px -4px 0px 15px #fff000;
+.theme-toggle-button.light {
+  background-color: #f8f9fa;
+  color: #121212;
+}
+
+.theme-toggle-button.dark {
+  background-color: #2c2c2c;
+  color: #f8f9fa;
+}
+
+.theme-icon {
+  font-size: 1.2rem;
 }
 
 /* Screen reader only */
@@ -74,29 +55,29 @@ input:checked + .slider:before {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .theme-toggle-container {
+    position: absolute;
     top: 15px;
-    right: 15px;
+    right: 60px; /* Adjusted to not overlap with the menu icon */
   }
   
-  .switch {
-    font-size: 14px;
+  .theme-toggle-button {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .theme-icon {
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .theme-toggle-container {
-    top: 10px;
-    right: 10px;
+    top: 12px;
+    right: 55px;
   }
   
-  .switch {
-    font-size: 12px;
-    width: 3em;
-    height: 1.7em;
-  }
-  
-  .slider:before {
-    height: 1.2em;
-    width: 1.2em;
+  .theme-toggle-button {
+    width: 32px;
+    height: 32px;
   }
 }

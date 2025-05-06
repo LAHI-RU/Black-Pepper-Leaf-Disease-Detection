@@ -1,6 +1,10 @@
 @import './styles/themes.css';
 
 /* Base styles */
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: var(--background-color);
   color: var(--text-color);
@@ -8,6 +12,7 @@ body {
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.6;
+  min-height: 100vh;
 }
 
 .App {
@@ -17,249 +22,148 @@ body {
   flex-direction: column;
 }
 
-/* Header styles */
-.App-header {
-  background-color: var(--primary-color);
-  min-height: 25vh;
+/* Main content styles */
+.page-content {
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--header-text);
-  padding: 20px;
-  position: relative;
-}
-
-.app-title {
-  margin-bottom: 10px;
-  font-size: 2rem;
-}
-
-.app-subtitle {
-  font-size: 1.2rem;
-  opacity: 0.9;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* Main content styles */
-.main-container {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
   width: 100%;
-  box-sizing: border-box;
-  flex: 1;
 }
 
-.upload-container {
-  border: 2px dashed var(--border-color);
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+/* Shared button styles */
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Link styles */
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+/* Common form element styles */
+input, 
+textarea, 
+select {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--input-background);
+  color: var(--text-color);
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, 
+textarea:focus, 
+select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(44, 82, 130, 0.2);
+}
+
+/* Image handling */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  line-height: 1.3;
+  color: var(--text-color);
+}
+
+/* Utility classes */
+.text-center {
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 4px;
   transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
 }
 
-.file-input {
-  display: none;
-}
-
-.file-label {
-  padding: 12px 20px;
+.btn-primary {
   background-color: var(--button-primary);
   color: var(--button-text);
-  border-radius: 4px;
-  cursor: pointer;
-  display: inline-block;
-  margin-bottom: 15px;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
 }
 
-.file-label:hover {
-  opacity: 0.9;
-}
-
-.preview-container {
-  margin: 15px 0;
-}
-
-.preview-image {
-  max-width: 100%;
-  max-height: 300px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.analyze-button {
-  padding: 12px 20px;
+.btn-secondary {
   background-color: var(--button-secondary);
   color: var(--button-text);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  font-size: 1rem;
-  margin-top: 15px;
 }
 
-.analyze-button:hover:not(.disabled) {
-  opacity: 0.9;
-}
-
-.analyze-button.disabled {
+.btn:disabled {
   opacity: 0.7;
   cursor: not-allowed;
 }
 
-.error-container {
-  color: var(--error-text);
-  margin: 15px 0;
-  padding: 10px;
-  background-color: var(--error-background);
-  border-radius: 4px;
-  text-align: left;
-}
-
-/* Results styles */
-.result-container {
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 20px;
-  margin-top: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.result-container.healthy {
-  background-color: var(--healthy-background);
-}
-
-.result-container.disease {
-  background-color: var(--disease-background);
-}
-
-.result-heading {
-  margin-top: 0;
-  margin-bottom: 15px;
-  font-size: 1.5rem;
-}
-
-.diagnosis-container {
-  margin-bottom: 15px;
-  font-size: 1.1rem;
-}
-
-.diagnosis-text {
-  font-weight: bold;
-  margin-left: 5px;
-}
-
-.healthy-text {
-  color: var(--healthy-text);
-}
-
-.disease-text {
-  color: var(--disease-text);
-}
-
-.treatment-container {
-  text-align: left;
-}
-
-.treatment-text {
-  margin-top: 5px;
-}
-
-/* Footer styles */
-.app-footer {
-  margin-top: auto;
-  padding: 15px;
-  background-color: var(--footer-background);
-  border-top: 1px solid var(--border-color);
-  text-align: center;
-}
-
-/* Responsive styles */
+/* Responsive globals */
 @media (max-width: 768px) {
-  .app-title {
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2 {
     font-size: 1.5rem;
   }
   
-  .app-subtitle {
-    font-size: 1rem;
+  h3 {
+    font-size: 1.3rem;
   }
   
-  .App-header {
-    min-height: 20vh;
-    padding: 15px 20px;
+  .container {
+    padding: 0 15px;
   }
   
-  .main-container {
-    padding: 15px;
-  }
-  
-  .upload-container {
-    padding: 15px;
-  }
-  
-  .file-label {
-    width: 80%;
-    max-width: 250px;
-  }
-  
-  .analyze-button {
-    width: 80%;
-    max-width: 250px;
+  .btn {
+    padding: 8px 16px;
+    font-size: 0.95rem;
   }
 }
 
 @media (max-width: 480px) {
-  .app-title {
+  h1 {
+    font-size: 1.6rem;
+  }
+  
+  h2 {
     font-size: 1.3rem;
   }
   
-  .app-subtitle {
-    font-size: 0.9rem;
+  h3 {
+    font-size: 1.1rem;
   }
   
-  .App-header {
-    min-height: 15vh;
-    padding: 10px 15px;
+  body {
+    font-size: 0.95rem;
   }
   
-  .main-container {
-    padding: 10px;
-  }
-  
-  .upload-container {
-    padding: 12px;
-    border-width: 1px;
-  }
-  
-  .file-label, 
-  .analyze-button {
-    padding: 10px 15px;
-    font-size: 0.9rem;
-    width: 100%;
-  }
-  
-  .result-heading {
-    font-size: 1.3rem;
-  }
-  
-  .diagnosis-container {
-    font-size: 1rem;
-  }
-  
-  .treatment-container {
-    font-size: 0.9rem;
-  }
-  
-  .app-footer {
-    padding: 10px;
-    font-size: 0.9rem;
+  .container {
+    padding: 0 10px;
   }
 }

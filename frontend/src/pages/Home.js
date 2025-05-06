@@ -7,6 +7,7 @@ import healthy_leaf from "../components/images/healthy_leaf.png"
 import leaf_blight from "../components/images/leaf_blight.jpg"  
 import yellow_mottle from "../components/images/yellow_mottle.jpg"
 
+
 const Home = () => {
   return (
     <div className="home-page">
@@ -58,7 +59,7 @@ const Home = () => {
       <section className="disease-preview-section">
         <h2>Common Black Pepper Leaf Diseases</h2>
         <div className="disease-cards">
-        <div className="disease-card">
+          <div className="disease-card">
             <img src={healthy_leaf} alt="Healthy Leaf" />
             <h3>Healthy Leaf</h3>
             <p>Deep green color with no signs of discoloration, spots, or deformities.</p>
@@ -76,16 +77,15 @@ const Home = () => {
             <p>Causes yellowing and mottling patterns on leaves, stunting plant growth.</p>
             <Link to="/disease-info" className="learn-more-link">Learn More</Link>
           </div>
-          
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section - Now with pattern background */}
       <section className="cta-section">
         <div className="cta-content">
           <h2>Ready to Protect Your Crops?</h2>
           <p>Use our AI-powered disease detection tool today and keep your black pepper plants healthy.</p>
-          <Link to="/detect" className="btn primary-btn">
+          <Link to="/detect" className="cta-button">
             Start Detection
           </Link>
         </div>

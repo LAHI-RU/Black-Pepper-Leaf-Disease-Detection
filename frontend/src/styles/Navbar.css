@@ -33,6 +33,12 @@
   margin-right: 10px;
 }
 
+.logo-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .nav-menu {
   display: flex;
   list-style: none;
@@ -78,6 +84,7 @@
 .menu-icon {
   display: none;
   cursor: pointer;
+  z-index: 1000;
 }
 
 .menu-bar {
@@ -110,31 +117,36 @@
     padding: 0.5rem 1rem;
   }
   
+  .logo-text {
+    max-width: 200px; /* Limit width on smaller screens */
+  }
+  
   .nav-menu {
     display: flex;
     flex-direction: column;
     width: 100%;
-    position: absolute;
-    top: 60px;
+    position: fixed;
+    top: 0;
     left: -100%;
-    opacity: 1;
-    transition: all 0.5s ease;
-    padding: 10px 0;
+    opacity: 0;
+    height: 100vh;
+    padding: 80px 0 30px;
     background-color: var(--background-color);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    z-index: 99;
+    overflow-y: auto;
   }
 
   .nav-menu.active {
     left: 0;
     opacity: 1;
-    transition: all 0.5s ease;
-    z-index: 1;
   }
 
   .nav-item {
     margin: 0;
     width: 100%;
-    padding: 10px 0;
+    padding: 15px 0;
   }
 
   .nav-link {
@@ -142,6 +154,7 @@
     width: 100%;
     display: block;
     text-align: center;
+    font-size: 1.1rem;
   }
 
   .nav-link.active::after {
@@ -155,10 +168,15 @@
 
 @media screen and (max-width: 480px) {
   .logo-text {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    max-width: 150px;
   }
   
   .logo-image {
     height: 30px;
+  }
+  
+  .navbar {
+    padding: 0.5rem;
   }
 }
