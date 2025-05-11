@@ -3,11 +3,14 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  scroll-behavior: smooth;
 }
 
 .detection-header {
   text-align: center;
   margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
 }
 
 .detection-header h1 {
@@ -32,11 +35,17 @@
   border-radius: 8px;
   padding: 30px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.2s;
 }
 
 .how-to-section {
   margin-bottom: 20px;
   width: 100%;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.3s;
 }
 
 .how-to-button {
@@ -88,6 +97,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.4s;
 }
 
 .upload-area {
@@ -207,6 +219,9 @@
   transition: all 0.3s ease;
   width: 100%;
   box-sizing: border-box;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.5s;
 }
 
 .result-container.healthy {
@@ -385,6 +400,9 @@
 
 .detection-tips {
   margin-top: 60px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.6s;
 }
 
 .detection-tips h3 {
@@ -409,6 +427,24 @@
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
   text-align: center;
   transition: transform 0.3s ease;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.tip-card:nth-child(1) {
+  animation-delay: 0.7s;
+}
+
+.tip-card:nth-child(2) {
+  animation-delay: 0.8s;
+}
+
+.tip-card:nth-child(3) {
+  animation-delay: 0.9s;
+}
+
+.tip-card:nth-child(4) {
+  animation-delay: 1s;
 }
 
 .tip-card:hover {
@@ -428,6 +464,18 @@
 
 .tip-card p {
   line-height: 1.6;
+}
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 768px) {

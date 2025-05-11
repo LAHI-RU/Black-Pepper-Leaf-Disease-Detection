@@ -1,10 +1,13 @@
-/* frontend/src/styles/Footer.css */
+/* frontend/src/styles/Footer.css with Animations */
 .footer {
   background-color: var(--footer-background);
   color: var(--text-color);
   padding: 3rem 0 0;
   margin-top: auto;
   border-top: 1px solid var(--border-color);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.6s;
 }
 
 .footer-main {
@@ -23,6 +26,20 @@
   margin-bottom: 30px;
   padding: 0 40px; /* Increased padding for more separation */
   text-align: center;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.footer-section:nth-child(1) {
+  animation-delay: 0.7s;
+}
+
+.footer-section:nth-child(2) {
+  animation-delay: 0.8s;
+}
+
+.footer-section:nth-child(3) {
+  animation-delay: 0.9s;
 }
 
 /* Divider line between sections */
@@ -122,12 +139,27 @@
   text-align: center;
   border-top: 1px solid var(--border-color);
   margin-top: 20px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 1s;
 }
 
 .copyright-text {
   font-size: 0.9rem;
   margin: 0;
   opacity: 0.8;
+}
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 960px) {

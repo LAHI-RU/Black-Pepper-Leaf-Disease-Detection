@@ -8,6 +8,8 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  opacity: 0;
+  animation: fadeInDown 0.8s ease forwards;
 }
 
 .navbar-container {
@@ -49,6 +51,24 @@
 
 .nav-item {
   margin: 0 1rem;
+  opacity: 0;
+  animation: fadeInRight 0.8s ease forwards;
+}
+
+.nav-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.nav-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.nav-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.nav-item:nth-child(4) {
+  animation-delay: 0.4s;
 }
 
 .nav-link {
@@ -84,7 +104,8 @@
 .menu-icon {
   display: none;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 1001;
+  padding: 10px;
 }
 
 .menu-bar {
@@ -109,16 +130,42 @@
 
 .navbar-theme-toggle {
   margin-left: 1rem;
+  opacity: 0;
+  animation: fadeInRight 0.8s ease forwards;
+  animation-delay: 0.5s;
 }
 
-/* Responsive styles */
+/* Animation Keyframes */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive styles - Fixed mobile menu visibility */
 @media screen and (max-width: 960px) {
   .navbar {
     padding: 0.5rem 1rem;
   }
   
   .logo-text {
-    max-width: 200px; /* Limit width on smaller screens */
+    max-width: 200px;
   }
   
   .nav-menu {
@@ -128,25 +175,25 @@
     position: fixed;
     top: 0;
     left: -100%;
-    opacity: 0;
     height: 100vh;
-    padding: 80px 0 30px;
+    padding: 80px 20px 30px;
     background-color: var(--background-color);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    z-index: 99;
+    z-index: 999;
     overflow-y: auto;
   }
 
   .nav-menu.active {
     left: 0;
-    opacity: 1;
   }
 
   .nav-item {
     margin: 0;
     width: 100%;
     padding: 15px 0;
+    animation: none;
+    opacity: 1;
   }
 
   .nav-link {
@@ -164,6 +211,13 @@
   .menu-icon {
     display: block;
   }
+  
+  .navbar-theme-toggle {
+    position: absolute;
+    right: 60px;
+    animation: none;
+    opacity: 1;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -178,5 +232,9 @@
   
   .navbar {
     padding: 0.5rem;
+  }
+  
+  .navbar-theme-toggle {
+    right: 55px;
   }
 }

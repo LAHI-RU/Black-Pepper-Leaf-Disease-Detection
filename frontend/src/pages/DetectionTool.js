@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../styles/DetectionTool.css";
 import ConfidenceGauge from "../components/ConfidenceGauge";
+import ReportGenerator from "../components/ReportGenerator";
+import "../styles/ReportGenerator.css";
 
 function DetectionTool() {
   const [file, setFile] = useState(null);
@@ -210,6 +212,20 @@ function DetectionTool() {
                 <strong>Recommended Treatment:</strong>
                 <p className="treatment-text">{result.treatment}</p>
               </div>
+              
+              {/* Export Report Button */}
+              <ReportGenerator 
+                result={result}
+                imagePreview={preview}
+                onExportSuccess={() => {
+                  // Optional: Show success message
+                  console.log("Report exported successfully!");
+                }}
+                onExportError={(error) => {
+                  // Optional: Show error message
+                  console.error("Export failed:", error);
+                }}
+              />
             </div>
           )}
         </div>

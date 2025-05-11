@@ -1,6 +1,7 @@
 /* frontend/src/styles/Home.css */
 .home-page {
   width: 100%;
+  scroll-behavior: smooth;
 }
 
 /* Hero Section */
@@ -11,6 +12,8 @@
   padding: 60px 20px;
   max-width: 1200px;
   margin: 0 auto;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
 }
 
 .hero-content {
@@ -90,6 +93,9 @@
   padding: 60px 20px;
   background-color: var(--card-background);
   text-align: center;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.2s;
 }
 
 .features-section h2 {
@@ -116,6 +122,20 @@
   min-width: 250px;
   max-width: 350px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.feature-card:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.feature-card:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.feature-card:nth-child(3) {
+  animation-delay: 0.5s;
 }
 
 .feature-card:hover {
@@ -143,6 +163,9 @@
   text-align: center;
   max-width: 1200px;
   margin: 0 auto;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.4s;
 }
 
 .disease-preview-section h2 {
@@ -167,6 +190,20 @@
   min-width: 250px;
   max-width: 350px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.disease-card:nth-child(1) {
+  animation-delay: 0.5s;
+}
+
+.disease-card:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+.disease-card:nth-child(3) {
+  animation-delay: 0.7s;
 }
 
 .disease-card:hover {
@@ -217,6 +254,9 @@
   background-position: center;
   background-blend-mode: overlay;
   z-index: 1;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.6s;
 }
 
 .cta-section::before {
@@ -263,6 +303,18 @@
   background-color: #45a049;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Responsive styles */

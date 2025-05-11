@@ -9,17 +9,16 @@ const About = () => {
     <div className="about-page">
       <div className="about-header">
         <h1>About Black Pepper Health</h1>
-        <p>Using technology to support sustainable black pepper farming</p>
+        <p>AI-powered disease detection for sustainable farming</p>
       </div>
 
       <section className="about-section">
         <div className="about-content">
           <h2>Our Mission</h2>
           <p>
-            PepperHealth aims to empower black pepper farmers with accessible technology 
-            to identify plant diseases early and apply eco-friendly treatments. By combining 
-            artificial intelligence with agricultural expertise, we help farmers reduce crop 
-            losses and minimize chemical usage.
+            Empowering farmers with AI technology to detect plant diseases early. 
+            We help reduce crop losses and minimize chemical usage through smart, 
+            eco-friendly solutions.
           </p>
         </div>
         <div className="about-image">
@@ -34,24 +33,19 @@ const About = () => {
         <div className="about-content">
           <h2>Our Technology</h2>
           <p>
-            We've developed a deep learning model trained on thousands of images of 
-            black pepper leaves. Our ResNet-based neural network can identify common 
-            diseases with high accuracy, providing farmers with instant diagnosis 
-            and treatment recommendations directly from their smartphones or computers.
+            Advanced ResNet neural network trained on thousands of leaf images. 
+            Instant disease diagnosis with high accuracy, accessible from any device.
           </p>
         </div>
       </section>
-
-      
 
       <section className="vision-section">
         <div className="vision-content">
           <h2>Our Vision</h2>
           <p>
-            We envision a future where technology and sustainable farming practices 
-            work hand in hand. By making disease detection accessible to farmers 
-            worldwide, we hope to contribute to food security, sustainable agriculture, 
-            and the economic wellbeing of farming communities.
+            Building a future where AI and sustainable farming unite. 
+            Making disease detection accessible globally to enhance food security 
+            and strengthen farming communities.
           </p>
         </div>
       </section>

@@ -4,11 +4,14 @@
   margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 .disease-info-header {
   text-align: center;
   margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
 }
 
 .disease-info-header h1 {
@@ -30,6 +33,9 @@
   margin-bottom: 30px;
   flex-wrap: wrap;
   gap: 10px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.2s;
 }
 
 .tab-button {
@@ -62,6 +68,9 @@
   border-radius: 8px;
   padding: 30px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.3s;
 }
 
 .disease-header {
@@ -90,6 +99,9 @@
 .disease-image {
   margin-bottom: 30px;
   text-align: center;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.4s;
 }
 
 .disease-image img {
@@ -111,6 +123,24 @@
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.info-card:nth-child(1) {
+  animation-delay: 0.5s;
+}
+
+.info-card:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+.info-card:nth-child(3) {
+  animation-delay: 0.7s;
+}
+
+.info-card:nth-child(4) {
+  animation-delay: 0.8s;
 }
 
 .info-card h3 {
@@ -165,11 +195,26 @@
   padding: 20px;
   margin-top: 30px;
   border-left: 4px solid #ff9500;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.9s;
 }
 
 .other-disease-note h3 {
   color: #d84315;
   margin-top: 0;
+}
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Medium screens */
