@@ -22,7 +22,7 @@ function Navbar() {
       <div className="navbar-container">
         <Link to="/" className="navbar-logo" onClick={closeMenu}>
           <img src={logo} alt="Logo" className="logo-image" />
-          <span className="logo-text">Black Pepper Health</span>
+          <span className="logo-text">Black Pepper Leaf Disease Detection</span>
         </Link>
         
         <div className={`nav-menu ${isOpen ? 'active' : ''}`}>

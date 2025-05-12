@@ -1,5 +1,5 @@
 // frontend/src/pages/DetectionTool.js
-import React, { useState } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import axios from "axios";
 import "../styles/DetectionTool.css";
 import ConfidenceGauge from "../components/ConfidenceGauge";
@@ -14,24 +14,64 @@ function DetectionTool() {
   const [result, setResult] = useState(null);
   const [showHowTo, setShowHowTo] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
+  const [dragActive, setDragActive] = useState(false);
+  const fileInputRef = useRef(null);
 
+  // Handle file selection
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
+    processFile(selectedFile);
+  };
+
+  // Process the selected file
+  const processFile = (selectedFile) => {
+    if (!selectedFile) return;
+    
+    // Check if file is an image
+    if (!selectedFile.type.match('image.*')) {
+      setError("Please select an image file (jpg, png, etc)");
+      return;
+    }
+    
     setFile(selectedFile);
     setError("");
     setResult(null);
     setShowDetails(false);
 
     // Create preview
-    if (selectedFile) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreview(reader.result);
-      };
-      reader.readAsDataURL(selectedFile);
-    } else {
-      setPreview(null);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreview(reader.result);
+    };
+    reader.readAsDataURL(selectedFile);
+  };
+
+  // Handle drag events
+  const handleDrag = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragActive(true);
+    } else if (e.type === "dragleave") {
+      setDragActive(false);
     }
+  }, []);
+
+  // Handle drop event
+  const handleDrop = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      processFile(e.dataTransfer.files[0]);
+    }
+  }, []);
+
+  // Trigger file input click
+  const onButtonClick = () => {
+    fileInputRef.current.click();
   };
 
   const handleSubmit = async (event) => {
@@ -83,13 +123,6 @@ function DetectionTool() {
     setShowDetails(!showDetails);
   };
 
-  // Function to determine the color class based on confidence
-  const getConfidenceClass = (confidence) => {
-    if (confidence >= 0.85) return "high-confidence";
-    if (confidence >= 0.65) return "medium-confidence";
-    return "low-confidence";
-  };
-
   return (
     <div className="detection-tool-page">
       <div className="detection-header">
@@ -118,36 +151,53 @@ function DetectionTool() {
         </div>
         
         <div className="upload-container">
-          <div className="upload-area">
+          <div 
+            className={`upload-area ${dragActive ? "drag-active" : ""}`}
+            onDragEnter={handleDrag}
+            onDragLeave={handleDrag}
+            onDragOver={handleDrag}
+            onDrop={handleDrop}
+          >
             <input 
               type="file" 
               accept="image/*"
               id="leaf-image" 
               onChange={handleFileChange}
               className="file-input"
+              ref={fileInputRef}
             />
-            <label 
-              htmlFor="leaf-image"
-              className="file-label"
-            >
-              {preview ? "Change Image" : "Select Leaf Image"}
-            </label>
             
-            {preview ? (
-              <div className="preview-container">
-                <img 
-                  src={preview} 
-                  alt="Leaf preview" 
-                  className="preview-image"
-                />
-              </div>
-            ) : (
+            {!preview ? (
               <div className="placeholder-container">
                 <div className="upload-placeholder">
                   <div className="upload-icon">📷</div>
-                  <p>Upload a clear image of a black pepper leaf</p>
+                  <p>Drag and drop a leaf image here or click to browse</p>
+                  <div className="button-container">
+                    <button 
+                      className="file-label"
+                      onClick={onButtonClick}
+                    >
+                      Select Leaf Image
+                    </button>
+                  </div>
                 </div>
               </div>
+            ) : (
+              <>
+                <div className="preview-container">
+                  <img 
+                    src={preview} 
+                    alt="Leaf preview" 
+                    className="preview-image"
+                  />
+                </div>
+                <button 
+                  className="file-label"
+                  onClick={onButtonClick}
+                >
+                  Change Image
+                </button>
+              </>
             )}
             
             <button 
