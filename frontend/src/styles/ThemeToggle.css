@@ -1,3 +1,4 @@
+/* frontend/src/styles/ThemeToggle.css */
 .theme-toggle-container {
   display: flex;
   align-items: center;
@@ -17,67 +18,43 @@
   transition: all 0.3s ease;
   padding: 0;
   outline: none;
-  background-color: var(--card-background);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.theme-toggle-button:hover {
-  transform: scale(1.1);
+  overflow: hidden;
 }
 
 .theme-toggle-button.light {
-  background-color: #f8f9fa;
-  color: #121212;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--primary-color);
 }
 
 .theme-toggle-button.dark {
-  background-color: #2c2c2c;
+  background-color: rgba(255, 255, 255, 0.1);
   color: #f8f9fa;
 }
 
-.theme-icon {
-  font-size: 1.2rem;
+.theme-toggle-button:hover {
+  transform: rotate(15deg);
+  background-color: var(--primary-color);
+  color: white;
 }
 
-/* Screen reader only */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+.theme-toggle-button:focus-visible {
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.theme-icon {
+  width: 20px;
+  height: 20px;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .theme-toggle-container {
-    position: absolute;
-    top: 15px;
-    right: 60px; /* Adjusted to not overlap with the menu icon */
-  }
-  
   .theme-toggle-button {
     width: 36px;
     height: 36px;
   }
   
   .theme-icon {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .theme-toggle-container {
-    top: 12px;
-    right: 55px;
-  }
-  
-  .theme-toggle-button {
-    width: 32px;
-    height: 32px;
+    width: 18px;
+    height: 18px;
   }
 }

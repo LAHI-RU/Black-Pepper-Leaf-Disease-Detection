@@ -238,3 +238,29 @@
     right: 55px;
   }
 }
+
+/* Add these styles to your existing Navbar.css */
+
+.navbar-theme-toggle {
+  margin-left: 15px;
+  opacity: 0;
+  animation: fadeInRight 0.8s ease forwards;
+  animation-delay: 0.5s;
+}
+
+.navbar-theme-toggle-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 960px) {
+  .navbar-theme-toggle {
+    display: none;
+  }
+  
+  .navbar-theme-toggle-mobile {
+    display: block;
+    margin: 15px auto;
+    animation: none;
+    opacity: 1;
+  }
+}

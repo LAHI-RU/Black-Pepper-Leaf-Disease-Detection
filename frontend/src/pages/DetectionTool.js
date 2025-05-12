@@ -4,6 +4,7 @@ import axios from "axios";
 import "../styles/DetectionTool.css";
 import ConfidenceGauge from "../components/ConfidenceGauge";
 import ReportGenerator from "../components/ReportGenerator";
+import { FaSearch, FaCropAlt, FaLeaf, FaExclamationTriangle } from "react-icons/fa";
 import "../styles/ReportGenerator.css";
 
 function DetectionTool() {
@@ -284,23 +285,31 @@ function DetectionTool() {
       <div className="detection-tips">
         <h3>Tips for Accurate Detection</h3>
         <div className="tips-grid">
-          <div className="tip-card">
-            <div className="tip-icon">🔍</div>
+          <div className="tips-card">
+            <div className="tips-icon">
+              <FaSearch />
+            </div>
             <h4>Use Clear Images</h4>
             <p>Ensure your image is well-lit and in focus for the most accurate results.</p>
           </div>
-          <div className="tip-card">
-            <div className="tip-icon">📏</div>
+          <div className="tips-card">
+            <div className="tips-icon">
+              <FaCropAlt />
+            </div>
             <h4>Full Leaf View</h4>
             <p>Include the entire leaf in the frame to capture all possible symptoms.</p>
           </div>
-          <div className="tip-card">
-            <div className="tip-icon">🌱</div>
+          <div className="tips-card">
+            <div className="tips-icon">
+              <FaLeaf />
+            </div>
             <h4>Fresh Samples</h4>
             <p>Use freshly picked leaves when possible for the best diagnosis.</p>
           </div>
-          <div className="tip-card">
-            <div className="tip-icon">⚠️</div>
+          <div className="tips-card">
+            <div className="tips-icon">
+              <FaExclamationTriangle />
+            </div>
             <h4>Uncertain Results</h4>
             <p>If confidence is low, try taking another photo or consult with an expert.</p>
           </div>

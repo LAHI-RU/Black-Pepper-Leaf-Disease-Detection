@@ -1,20 +1,19 @@
 // frontend/src/components/Navbar.js
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../styles/Navbar.css";
-import logo from "./images/logo.png";
 import ThemeToggle from "./ThemeToggle";
+import logo from "./images/logo.png"; 
 
-function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
+const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleClick = () => {
-    setIsOpen(!isOpen);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
   const closeMenu = () => {
-    setIsOpen(false);
+    if (menuOpen) setMenuOpen(false);
   };
 
   return (
@@ -24,58 +23,61 @@ function Navbar() {
           <img src={logo} alt="Logo" className="logo-image" />
           <span className="logo-text">Black Pepper Leaf Disease Detection</span>
         </Link>
-        
-        <div className={`nav-menu ${isOpen ? 'active' : ''}`}>
-          <div className="nav-item">
-            <Link 
-              to="/" 
-              className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
+
+        <div className="menu-icon" onClick={toggleMenu}>
+          <div className={`menu-bar ${menuOpen ? "open" : ""}`}></div>
+          <div className={`menu-bar ${menuOpen ? "open" : ""}`}></div>
+          <div className={`menu-bar ${menuOpen ? "open" : ""}`}></div>
+        </div>
+
+        <ul className={`nav-menu ${menuOpen ? "active" : ""}`}>
+          <li className="nav-item">
+            <NavLink
+              to="/"
+              className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
               onClick={closeMenu}
             >
               Home
-            </Link>
-          </div>
-          <div className="nav-item">
-            <Link 
-              to="/detect" 
-              className={`nav-link ${location.pathname === '/detect' ? 'active' : ''}`}
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              to="/detect"
+              className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
               onClick={closeMenu}
             >
               Detection Tool
-            </Link>
-          </div>
-          <div className="nav-item">
-            <Link 
-              to="/disease-info" 
-              className={`nav-link ${location.pathname === '/disease-info' ? 'active' : ''}`}
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              to="/disease-info"
+              className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
               onClick={closeMenu}
             >
               Disease Info
-            </Link>
-          </div>
-          <div className="nav-item">
-            <Link 
-              to="/about" 
-              className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`}
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              to="/about"
+              className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
               onClick={closeMenu}
             >
-              About
-            </Link>
-          </div>
-        </div>
+              About Us
+            </NavLink>
+          </li>
+          <li className="nav-item navbar-theme-toggle-mobile">
+            <ThemeToggle />
+          </li>
+        </ul>
         
         <div className="navbar-theme-toggle">
           <ThemeToggle />
         </div>
-        
-        <div className="menu-icon" onClick={handleClick}>
-          <div className={`menu-bar ${isOpen ? 'open' : ''}`}></div>
-          <div className={`menu-bar ${isOpen ? 'open' : ''}`}></div>
-          <div className={`menu-bar ${isOpen ? 'open' : ''}`}></div>
-        </div>
       </div>
     </nav>
   );
-}
+};
 
 export default Navbar;
