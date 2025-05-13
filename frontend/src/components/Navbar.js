@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <Link to="/" className="navbar-logo" onClick={closeMenu}>
+        <Link to="/" className="navbar-logo" onClick={() => window.scrollTo(0, 0)}>
           <img src={logo} alt="Logo" className="logo-image" />
           <span className="logo-text">Black Pepper Leaf Disease Detection</span>
         </Link>
@@ -46,7 +46,7 @@ const Navbar = () => {
               className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
               onClick={closeMenu}
             >
-              Detection Tool
+              Disease Detection
             </NavLink>
           </li>
           <li className="nav-item">

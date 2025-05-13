@@ -85,7 +85,7 @@ const Home = () => {
         <div className="cta-content">
           <h2>Ready to Protect Your Crops?</h2>
           <p>Use our AI-powered disease detection tool today and keep your black pepper plants healthy.</p>
-          <Link to="/detect" className="cta-button">
+          <Link to="/detect" className="cta-button" onClick={() => window.scrollTo(0, 0)}>
             Start Detection
           </Link>
         </div>
