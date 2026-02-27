@@ -64,7 +64,6 @@ pip install -r requirements.txt
 mkdir -p models
 # Place the black_pepper_model.pth in the models directory
 ```
-Note: The repo root `requirements.txt` is a full research/training environment and is not required to run the API.
 
 ### Frontend Setup
 ```bash
