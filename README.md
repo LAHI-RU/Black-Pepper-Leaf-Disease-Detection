@@ -1,9 +1,9 @@
 # Black Pepper Leaf Disease Detection
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Python](https://img.shields.io/badge/python-3.8+-green.svg)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.68+-blue.svg)
-![React](https://img.shields.io/badge/react-18.0+-61DAFB.svg)
+![Python](https://img.shields.io/badge/python-3.9+-green.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-blue.svg)
+![React](https://img.shields.io/badge/react-19.0+-61DAFB.svg)
 
 A web-based application that leverages deep learning to detect and classify diseases in black pepper leaves while providing eco-friendly treatment recommendations. This project combines state-of-the-art machine learning with a user-friendly interface to help farmers and agriculturists maintain healthy black pepper crops.
 
@@ -22,14 +22,14 @@ A web-based application that leverages deep learning to detect and classify dise
 ## 🛠️ Technology Stack
 
 ### Backend
-- Python 3.8+
-- FastAPI
+- Python 3.9+
+- FastAPI 0.115+
 - PyTorch
 - Pillow (PIL)
 - Torchvision
 
 ### Frontend
-- React 18+
+- React 19+
 - React Router
 - Modern JavaScript (ES6+)
 - CSS3
@@ -37,7 +37,7 @@ A web-based application that leverages deep learning to detect and classify dise
 ## 📋 Prerequisites
 
 Before you begin, ensure you have the following installed:
-- Python 3.8 or higher
+- Python 3.9 or higher
 - Node.js 14.0 or higher
 - npm or yarn
 - Git
