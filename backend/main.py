@@ -1,12 +1,16 @@
-from fastapi import FastAPI, File, UploadFile
+from collections import defaultdict, deque
+import io
+import os
+import time
+
+from fastapi import FastAPI, File, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 import torch
 import torch.nn.functional as F
 import torchvision.transforms as transforms
 from torchvision import models
 from PIL import Image
-import io
-import os
 
 app = FastAPI()
 
@@ -25,6 +29,11 @@ MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "models", 
 # Define confidence threshold
 CONFIDENCE_THRESHOLD = 0.65  # Adjust this value based on your model's performance
 
+# Basic in-memory rate limiting (per-client IP)
+RATE_LIMIT_REQUESTS = 60
+RATE_LIMIT_WINDOW_SECONDS = 60
+request_times = defaultdict(deque)
+
 # Load the trained model if it exists, otherwise handle gracefully
 try:
     model = models.resnet18()
@@ -32,8 +41,8 @@ try:
     model.load_state_dict(torch.load(MODEL_PATH, map_location=torch.device("cpu")))
     model.eval()
     model_loaded = True
-except FileNotFoundError:
-    print(f"Warning: Model file not found at {MODEL_PATH}")
+except Exception as e:
+    print(f"Warning: Model could not be loaded from {MODEL_PATH}: {e}")
     model_loaded = False
 
 # Define class names
@@ -47,12 +56,65 @@ treatments = {
     "Other Disease": "Unable to confidently identify the specific disease. Consider: 1) Isolate affected plants, 2) Improve air circulation, 3) Apply neem oil as a preventative treatment, and 4) Consult an agricultural expert for further analysis."
 }
 
-# Define transformation
+# Define transformation (must match evaluation-time preprocessing used in training)
 transform = transforms.Compose([
-    transforms.Resize((224, 224)),
+    transforms.Resize(256),
+    transforms.CenterCrop(224),
     transforms.ToTensor(),
-    transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
 ])
+
+
+@app.middleware("http")
+async def rate_limit_middleware(request: Request, call_next):
+    client_ip = request.client.host if request.client else "unknown"
+    now = time.time()
+    bucket = request_times[client_ip]
+
+    while bucket and now - bucket[0] > RATE_LIMIT_WINDOW_SECONDS:
+        bucket.popleft()
+
+    if len(bucket) >= RATE_LIMIT_REQUESTS:
+        return JSONResponse(
+            status_code=429,
+            content={
+                "error": "Rate limit exceeded. Please retry later.",
+                "limit": RATE_LIMIT_REQUESTS,
+                "window_seconds": RATE_LIMIT_WINDOW_SECONDS,
+            },
+        )
+
+    bucket.append(now)
+    return await call_next(request)
+
+
+@app.get("/health/")
+async def health():
+    return {
+        "status": "ok",
+        "model_loaded": model_loaded,
+    }
+
+
+@app.get("/info/")
+async def info():
+    return {
+        "model": "ResNet18",
+        "classes": class_names,
+        "confidence_threshold": CONFIDENCE_THRESHOLD,
+        "preprocessing": {
+            "resize": 256,
+            "center_crop": 224,
+            "normalize_mean": [0.485, 0.456, 0.406],
+            "normalize_std": [0.229, 0.224, 0.225],
+        },
+    }
+
+
+@app.get("/treatments/")
+async def get_treatments():
+    return {"treatments": treatments}
+
 
 @app.post("/predict/")
 async def predict(file: UploadFile = File(...)):
